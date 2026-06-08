@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ရဲထွဋ် | Padauk Pages</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-gold: #E3A824;
+            --heritage-lacquer: #782823;
+            --deep-indigo: #1C304A;
+            --bg-color: #F4F0E6;
+            --text-main: #242424;
+            --viber-color: #7360f2;
+            --telegram-color: #0088cc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', 'Padauk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card-container {
+            max-width: 400px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--primary-gold);
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            color: var(--heritage-lacquer);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .role {
+            color: var(--primary-gold);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--deep-indigo);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        hr { border: 0; height: 1px; background: #e0dcd3; margin: 30px 0; }
+
+        .qr-section { text-align: center; }
+        .qr-section h3 {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        /* QR Code ပေါ်လာမည့် နေရာ */
+        #qrcode {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: #fff;
+            border: 3px solid var(--bg-color);
+            border-radius: 10px;
+        }
+
+        #qrcode img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .action-buttons { display: flex; gap: 10px; justify-content: center;}
+        
+        .action-btn {
+            flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .btn-copy { background-color: #f0ebe1; color: var(--text-main); }
+        .btn-download { background-color: var(--primary-gold); color: #ffffff; }
+
+        .action-btn:hover { opacity: 0.85; }
+
+        #toast {
+            visibility: hidden; min-width: 200px; background-color: var(--text-main);
+            color: #fff; text-align: center; border-radius: 8px; padding: 12px;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 14px; opacity: 0; transition: 0.3s;
+        }
+        #toast.show { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        
+        <h1>ရဲထွဋ်</h1>
+        <p class="role">Founder & Designer</p>
+
+        <div class="info-group">
+            <div class="info-label">Brand</div>
+            <div class="info-value">Padauk Pages</div>
+        </div>
+
+        <div class="info-group">
+            <div class="info-label">Phone Number</div>
+            <div class="info-value">09-956728837</div>
+        </div>
+
+        <div class="social-buttons">
+            <a href="viber://chat?number=%2B959956728837" class="social-btn" style="background-color: var(--viber-color);">Viber Message</a>
+            <a href="https://t.me/+959956728837" class="social-btn" style="background-color: var(--telegram-color);">Telegram Info</a>
+        </div>
+
+        <hr>
+
+        <div class="qr-section">
+            <h3>Scan to Connect</h3>
+            
+            <div id="qrcode"></div>
+            
+            <div class="action-buttons">
+                <button class="action-btn btn-copy" onclick="copyLink()">Copy Link</button>
+                <button class="action-btn btn-download" onclick="downloadQR()">Download QR</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast">Link copied!</div>
+
+    <script>
+        // ၁။ လက်ရှိ Web Link ကို ရယူခြင်း 
+        // (မှတ်ချက် - ကိုယ့်စက်ထဲမှာ ရိုးရိုးဖွင့်ထားရင် file:/// လို့ထွက်ပြီး၊ အွန်လိုင်းတင်လိုက်ရင် အွန်လိုင်းလင့်ခ်အမှန် ထွက်ပါမည်)
+        let currentUrl = window.location.href;
+
+        // ၂။ QR Code ထုတ်ပေးခြင်း
+        let qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: currentUrl,
+            width: 140,
+            height: 140,
+            colorDark : "#1C304A", // Padauk Deep Indigo Color
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // ၃။ Link Copy ကူးသည့် လုပ်ဆောင်ချက်
+        function copyLink() {
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                showToast("Link copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // ၄။ QR Code ကို Image အဖြစ် ဒေါင်းလုဒ်ဆွဲသည့် လုပ်ဆောင်ချက်
+        function downloadQR() {
+            let qrCanvas = document.querySelector('#qrcode canvas');
+            if (qrCanvas) {
+                let link = document.createElement('a');
+                link.href = qrCanvas.toDataURL("image/png");
+                link.download = 'Padauk_Pages_QR.png';
+                link.click();
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
+
+</body>
+</html>
